@@ -13,23 +13,13 @@ RUN apt-get update && \
 RUN mkdir /datos
 WORKDIR /datos
 RUN touch f1.txt
-RUN mkdir /datos2
-WORKDIR /datos2
-RUN touch f2.txt
 
-#ENV 
-ENV dir=/data dir1=/data1D
-RUN mkdir $dir && mkdir $dir1
-ENV TEXTO="Esto es un ejemplo de texto"
+ENV dir1=/dat
 
-CMD echo $TEXTO
+ADD crear_dir.sh /datos/
 
-#COPY
-COPY index.html . 
-COPY app.log /datos
+RUN chmod +x /datos/crear_dir.sh
 
-#ADD
-ADD docs docs
-ADD f* /datos/
-ADD f.tar . 
+CMD ["/datos/crear_dir.sh"]
+
 

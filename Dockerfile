@@ -17,6 +17,13 @@ RUN mkdir /datos2
 WORKDIR /datos2
 RUN touch f2.txt
 
+#ENV 
+ENV dir=/data dir1=/data1D
+RUN mkdir $dir && mkdir $dir1
+ENV TEXTO="Esto es un ejemplo de texto"
+
+CMD echo $TEXTO
+
 #COPY
 COPY index.html . 
 COPY app.log /datos
@@ -26,5 +33,3 @@ ADD docs docs
 ADD f* /datos/
 ADD f.tar . 
 
-#ENTRYPOINT
-ENTRYPOINT [ "/bin/bash" ]
